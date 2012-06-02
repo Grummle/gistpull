@@ -1,0 +1,14 @@
+{
+"name":"gistpull",
+"version": "0.0.1",
+  "permissions": [
+    "https://gist.github.com/*"
+  ],
+    "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js" : ["jquery.js","mutation_summary.js","contentscript.js"],
+	  "css" : ["embed.css"]
+    }
+  ]
+}
