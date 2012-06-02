@@ -4,7 +4,6 @@ var getTheGist = function (src) {  //I Crack Myself UP!
         url: src + '.js',
         dataType: 'text'
     }).then(function (data) {
-        console.log('resolving...');
         var gist = $(eval('"' + data.substring(data.lastIndexOf("document.write('"), data.lastIndexOf("')")) + '"'));
         $(gist).find('a').addClass('gistpull_nofollow');
         deferred.resolve(gist);
@@ -12,11 +11,15 @@ var getTheGist = function (src) {  //I Crack Myself UP!
     return deferred.promise()
 }
 
+var partOfEditable = function (link) {
+    return $(link).parents('[contenteditable = "true"], :input').length;
+}
+
 var gistTest = function (link) { 
     var pat = /https:\/\/gist\.github\.com\/[^\/]+?$/;
     if ($(link).hasClass('gistpull_nofollow')) { return false; }
     var href = $(link).attr('href');
-    return pat.test(href);
+    return pat.test(href) && !partOfEditable(link);
 }
 
 var processLink = function (link) { 
