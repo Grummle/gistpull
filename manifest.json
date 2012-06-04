@@ -11,5 +11,8 @@
 	  "css" : ["embed.css"],
 	  "all_frames":true
     }
-  ]
+  ],
+  "icons": { "16": "GistPull16.jpg",
+           "48": "GistPull48.jpg",
+          "128": "GistPull.jpg" }
 }
