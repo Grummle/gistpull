@@ -8,7 +8,8 @@
     {
       "matches": ["http://*/*","https://*/*"],
       "js" : ["jquery.js","mutation_summary.js","contentscript.js"],
-	  "css" : ["embed.css"]
+	  "css" : ["embed.css"],
+	  "all_frames":true
     }
   ]
 }

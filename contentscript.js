@@ -5,10 +5,23 @@ var getTheGist = function (src) {  //I Crack Myself UP!
         dataType: 'text'
     }).then(function (data) {
         var gist = $(eval('"' + data.substring(data.lastIndexOf("document.write('"), data.lastIndexOf("')")) + '"'));
+        namespaceCssClasses(gist);
         $(gist).find('a').addClass('gistpull_nofollow');
         deferred.resolve(gist);
     });
     return deferred.promise()
+}
+
+var namespaceCssClasses = function (gist){
+    gist.find('*').each(function(){
+        if($(this).attr('class')){
+            var classes=$(this).attr('class').split(/\s+/);
+            for(var i=0; i<classes.length;i=i+1){
+                var currentClass = classes[i];
+                $(this).removeClass(currentClass).addClass('gistpull_'+currentClass);
+            }
+        }
+    });
 }
 
 var partOfEditable = function (link) {
